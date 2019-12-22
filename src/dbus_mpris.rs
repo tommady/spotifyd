@@ -96,7 +96,9 @@ impl Future for DbusServer {
             } else {
                 self.token_request = Some(get_token(&self.session, CLIENT_ID, SCOPE));
             }
-        } else if let Some(ref mut fut) = self.dbus_future {
+        }
+
+        if let Some(ref mut fut) = self.dbus_future {
             return fut.poll();
         }
 
